@@ -2,7 +2,11 @@
 # Найдите сумму цифр трехзначного числа. 
 # 123 -> 6 (1 + 2 + 3)
 # 100 -> 1 (1 + 0 + 0)
-n = 0
-while n < 100 or n > 999:
-    n = int(input("Введите трехзначное число: "))
-print(n)
+number = ""
+summ = 0
+while len(number) != 3:
+    number = input("Введите трехзначное число: ")
+for i in number:
+    summ += int(i)
+print(number, summ)
+print(f'Сумма цифр числа {number} равна {summ}!')
