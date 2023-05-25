@@ -12,12 +12,27 @@ countHeads = 0
 countTails = 0
 table = []
 numberMonet = int(input("Сколько монеток лежит на столе? "))
+# А если количество монеток 1?
+if numberMonet == 1:
+    print("Глупо считать монетки когда она одна.")
+    quit()
+
+# А если юзверь ввел отрицательное значение?
+if numberMonet < 1:
+    print("Не может быть отрицательное количество монет.")
+    quit()
+
 for i in range(numberMonet):
     table.append(round(random()))
     if table[i] == 1: countHeads += 1
-    if table[i] == 0: countTails += 1
-
+    else: countTails += 1
 print(table)
+
+# А если все монеты лежат одной стороной вверх?
+if countHeads == 0 or countTails == 0:
+    print("Ничего переворачивать не требуется.")
+    quit()
+
 if countHeads < countTails:
     print(f"Перевернуть нужно монетки лежащие решкой вверх, их всего {countHeads}")
 elif countHeads > countTails:
