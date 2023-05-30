@@ -18,11 +18,14 @@
 # Пользователь в первой строке вводит натуральное число N – количество элементов в массиве. 
 # В последующих  строках записаны N целых чисел Ai. Последняя строка содержит число X
 A = []
-diff = 0
+diff = 100
+element = 0
 X = int(input("Задайте число X: "))
 N = int(input("Введите количество элементов: "))
 for i in range(N):
     A.append(int(input(f"Введите элементо {i+1}: ")))
-    if abs(A[i] - X) < diff: diff = abs(A[i] - X)
-    print(diff)
+    if abs(A[i] - X) < diff: 
+        diff = abs(A[i] - X)
+        element = i
+print(f"Самы близкий элемент A[{element}] = {A[element]}")
 
