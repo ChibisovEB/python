@@ -25,4 +25,3 @@ for i in range(N):
     A.append(int(input(f"Введите элементо {i+1}: ")))
     if abs(A[i] - X) < diff: diff = abs(A[i] - X)
     print(diff)
-
