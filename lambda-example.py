@@ -3,8 +3,8 @@ def sum(a, b):
     return (a + b)
 
 myList = [1,2,3,4,5, "weecg",7,8,90,23,5,4,6, "were",78,66,67,22,23,45,43,44]
-# a = int(input('Enter 1st number: '))
-# b = int(input('Enter 2nd number: '))
+a = int(input('Enter 1st number: '))
+b = int(input('Enter 2nd number: '))
 # ll = (lambda a, b: a + b)
 # print(type(a))
 
@@ -17,9 +17,10 @@ print(f'Нечетные {list(filter(lambda x: (x%2 != 0) , myList))}') # по�
 print(f'Конвертируем в строки {list(map(lambda x: (str(x)) , myList))}') # конвертация в строки всего спсика
 print(f'reduce {reduce((lambda x, y: x + y), myList)}') # сумма всех элементов
 
-tables = [lambda x = x: x*10 for x in range(1, 11)] # списковое включение
+tables = [lambda x = x: x*10 for x in range(1, 11)]
 for table in tables:
     print(table())
-    
+
 max_number = lambda a, b : a if a > b else b
-print(f"выводим максмальное число {max_number(30, 5)}")    
+print(f"выводим максмальное число {max_number(30, 102)}")
+print(a if a > b else b) # вывод условный
