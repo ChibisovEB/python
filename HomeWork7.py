@@ -8,15 +8,34 @@
 # *Пример:*
 # **Ввод:** пара-ра-рам рам-пам-папам па-ра-па-да    
 #     **Вывод:** Парам пам-пам  
+from functools import reduce
+def countVowel(s):
+    count = 0
+    vowels = set("аАуУоОыЫиИэЭяЯюЮёЁеЕ")
+    for letter in s:
+        if letter in vowels:
+            count += 1
+    return count
 
-text = "пара-ра-рам рам-пам-папам па-ра-па-да"
+# text = "пара-ра-рам рам-пам-папам па-ра-па-да-да"
+text = input()
+print(text)
+
+# уберем лишние символы из текста
+# и изменим представление текста для удобства обработки
 phrases = list(map(lambda x: (x.split("-")) ,text.split(" ")))
-# list(lambda x: (x.split("-")))
-vowels = set("ауоыиэяюёе")
-# нужна функция для подсчета гоасных в строке
 
+# посчитаем количество гласных построчно
+vowelsInLines = []
 for i in phrases:
-    print(' '.join(i), )
+    vowelsInLines.append(countVowel(''.join(i)))
+
+# ну и проверим выделяется ли какая-нибудь строчка по количеству гласных    
+if reduce((lambda x, y: x + y), vowelsInLines) / vowelsInLines[0] == len(vowelsInLines):
+    print("Парам пам-пам")
+else:
+    print("Пам парам")
+
 
 
 
