@@ -19,7 +19,7 @@ def countVowel(s):
 
 # text = "пара-ра-рам рам-пам-папам па-ра-па-да-да"
 # print(text)
-text = input()
+text = input("Винни, вводи свой стих> ")
 
 # уберем лишние символы из текста
 # и изменим представление текста для удобства обработки
@@ -53,3 +53,19 @@ else:
 # 4 8 12 16 20 24
 # 5 10 15 20 25 30
 # 6 12 18 24 30 36
+# line = []
+# num_rows = int(input("Количество строк >"))
+# num_columns = int(input("Количество столбцов >"))
+# for row in range(1,num_rows + 1):
+#     for col in range(1,num_columns + 1):
+#         line.append(row * col)
+#     print(*line)
+#     line = []
+
+def print_operation_table(operation,num_rows,num_columns):   
+    for row in range(1,num_rows+1):
+        for col in range(1,num_columns+1):
+            print(operation(row,col), end="\t")
+        print("\n")
+
+print_operation_table(lambda x, y: x * y,16,8)
