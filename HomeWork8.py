@@ -1,22 +1,28 @@
+import os
+import platform 
+plt = platform.system() # определим систему и назначим команду для очистки экрана
+if   plt == "Windows":   cls = "cls"
+elif plt == "Linux":     cls = "clear"
+elif plt == "Darwin":    cls = "clear"
+else:                    cls = ""
+
 def choose_action(phonebook):
     while True:
+        os.system(cls)
         print('Что вы хотите сделать?')
-        user_choice = input('1 - Импортировать данные\n2 - Найти контакт\n3 - Добавить контакт\n\
-4 - Изменить контакт\n5 - Удалить контакт\n6 - Просмотреть все контакты\n0 - Выйти из приложения\n')
+        user_choice = input('1 - Найти контакт\n2 - Добавить контакт\n\
+3 - Изменить контакт\n4 - Удалить контакт\n5 - Просмотреть все контакты\n0 - Выйти из приложения\n')
         print()
         if user_choice == '1':
-            file_to_add = input('Введите название импортируемого файла: ')
-            import_data(file_to_add, phonebook)
-        elif user_choice == '2':
             contact_list = read_file_to_dict(phonebook)
             find_number(contact_list)
-        elif user_choice == '3':
+        elif user_choice == '2':
             add_phone_number(phonebook)
-        elif user_choice == '4':
+        elif user_choice == '3':
             change_phone_number(phonebook)
-        elif user_choice == '5':
+        elif user_choice == '4':
             delete_contact(phonebook)
-        elif user_choice == '6':
+        elif user_choice == '5':
             show_phonebook(phonebook)
         elif user_choice == '0':
             print('До свидания!')
