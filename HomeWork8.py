@@ -3,7 +3,7 @@ import platform
 
 def choose_action(phonebook):
     while True:
-        os.system(cls)
+        clear_screen()
         print('Что вы хотите сделать?')
         user_choice = input('1 - Найти контакт\n2 - Добавить контакт\n\
 3 - Изменить контакт\n4 - Удалить контакт\n5 - Просмотреть все контакты\n0 - Выйти из приложения\n')
@@ -146,16 +146,20 @@ def delete_contact(file_name):
             file.write(line)
 
 
-def print_contacts(contact_list: list):
+def print_contacts(contact_list: list): # вывод списка контактов
     for contact in contact_list:
         for key, value in contact.items():
             print(f'{key}: {value:12}', end='')
         print()
 
-plt = platform.system() # определим систему и назначим команду для очистки экрана
-if   plt == "Windows":   cls = "cls"
-elif plt == "Linux":     cls = "clear"
-elif plt == "Darwin":    cls = "clear"
-else:                    cls = ""
+def clear_screen(): # кроссплатформенная очистка экрана
+    plt = platform.system()
+    if   plt == "Windows":   cls = "cls"
+    elif plt == "Linux":     cls = "clear"
+    elif plt == "Darwin":    cls = "clear"
+    else:                    cls = ""
+    os.system(cls)
+
+
 file = 'Phonebook.txt'
 choose_action(file)
