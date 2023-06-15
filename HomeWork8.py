@@ -163,3 +163,4 @@ def clear_screen(): # кроссплатформенная очистка экр
 
 file = 'Phonebook.txt'
 choose_action(file)
+
