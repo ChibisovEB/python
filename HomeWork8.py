@@ -73,6 +73,7 @@ def find_number(contact_list): # поиск
             found_contacts.append(contact)
     if len(found_contacts) == 0:
         print('Контакт не найден!')
+        pause()
     else:
         print_contacts(found_contacts)
     print()
@@ -89,12 +90,15 @@ def add_phone_number(file_name): # добавляем новый контакт 
     info = ' '.join(get_new_number())
     with open(file_name, 'a', encoding='utf-8') as file:
         file.write(f'{info}\n')
+    print(f'В справочник добалена запись "{info}"')
+    pause()
 
 
 def show_phonebook(file_name): # вывод всего справочника в отсортированом виде
     list_of_contacts = sorted(read_file_to_dict(file_name), key=lambda x: x['Фамилия'])
     print_contacts(list_of_contacts)
     print()
+    pause()
     return list_of_contacts
 
 
@@ -115,6 +119,7 @@ def search_to_modify(contact_list: list): # поиск контактов для
     else:
         print('Контакт не найден')
     print()
+    pause()
 
 
 def change_phone_number(file_name): # форма изменения контакта
@@ -134,6 +139,7 @@ def change_phone_number(file_name): # форма изменения контак
         for contact in contact_list:
             line = ' '.join(contact) + '\n'
             file.write(line)
+    pause()
 
 
 def delete_contact(file_name): # удаление контакта 
@@ -144,6 +150,7 @@ def delete_contact(file_name): # удаление контакта
         for contact in contact_list:
             line = ' '.join(contact) + '\n'
             file.write(line)
+    pause()
 
 
 def print_contacts(contact_list: list): # вывод списка контактов
@@ -151,6 +158,7 @@ def print_contacts(contact_list: list): # вывод списка контакт
         for key, value in contact.items():
             print(f'{key}: {value:12}', end='')
         print()
+    pause()
 
 def clear_screen(): # кроссплатформенная очистка экрана
     plt = platform.system()
@@ -160,6 +168,8 @@ def clear_screen(): # кроссплатформенная очистка экр
     else:                    cls = ""
     os.system(cls)
 
+def pause():
+    input("Нажмите Enter для продолжения...")
 
 file = 'Phonebook.txt'
 choose_action(file)
