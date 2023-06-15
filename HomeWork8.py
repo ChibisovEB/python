@@ -1,10 +1,5 @@
 import os
 import platform 
-plt = platform.system() # определим систему и назначим команду для очистки экрана
-if   plt == "Windows":   cls = "cls"
-elif plt == "Linux":     cls = "clear"
-elif plt == "Darwin":    cls = "clear"
-else:                    cls = ""
 
 def choose_action(phonebook):
     while True:
@@ -166,7 +161,10 @@ def print_contacts(contact_list: list):
             print(f'{key}: {value:12}', end='')
         print()
 
-
-if __name__ == '__main__':
-    file = 'Phonebook.txt'
-    choose_action(file)
+plt = platform.system() # определим систему и назначим команду для очистки экрана
+if   plt == "Windows":   cls = "cls"
+elif plt == "Linux":     cls = "clear"
+elif plt == "Darwin":    cls = "clear"
+else:                    cls = ""
+file = 'Phonebook.txt'
+choose_action(file)
