@@ -1,7 +1,7 @@
 import os
 import platform 
 
-def choose_action(phonebook):
+def choose_action(phonebook): # главное меню
     while True:
         clear_screen()
         print('Что вы хотите сделать?')
@@ -28,7 +28,7 @@ def choose_action(phonebook):
             continue
 
 
-def read_file_to_dict(file_name):
+def read_file_to_dict(file_name): # чтение справочника в словарь
     with open(file_name, 'r', encoding='utf-8') as file:
         lines = file.readlines()
     headers = ['Фамилия', 'Имя', 'Номер телефона']
@@ -39,7 +39,7 @@ def read_file_to_dict(file_name):
     return contact_list
 
 
-def read_file_to_list(file_name):
+def read_file_to_list(file_name): # чтение справочника в список
     with open(file_name, 'r', encoding='utf-8') as file:
         contact_list = []
         for line in file.readlines():
@@ -47,7 +47,7 @@ def read_file_to_list(file_name):
     return contact_list
 
 
-def search_parameters():
+def search_parameters(): # запрашиваем параметры поиска у пользователя
     print('По какому полю выполнить поиск?')
     search_field = input('1 - по фамилии\n2 - по имени\n3 - по номеру телефона\n')
     print()
@@ -64,7 +64,7 @@ def search_parameters():
     return search_field, search_value
 
 
-def find_number(contact_list):
+def find_number(contact_list): # поиск
     search_field, search_value = search_parameters()
     search_value_dict = {'1': 'Фамилия', '2': 'Имя', '3': 'Номер телефона'}
     found_contacts = []
@@ -78,27 +78,27 @@ def find_number(contact_list):
     print()
 
 
-def get_new_number():
+def get_new_number(): # форма ввода нового контакта
     last_name = input('Введите фамилию: ')
     first_name = input('Введите имя: ')
     phone_number = input('Введите номер телефона: ')
     return last_name, first_name, phone_number
 
 
-def add_phone_number(file_name):
+def add_phone_number(file_name): # добавляем новый контакт в файл данных
     info = ' '.join(get_new_number())
     with open(file_name, 'a', encoding='utf-8') as file:
         file.write(f'{info}\n')
 
 
-def show_phonebook(file_name):
+def show_phonebook(file_name): # вывод всего справочника в отсортированом виде
     list_of_contacts = sorted(read_file_to_dict(file_name), key=lambda x: x['Фамилия'])
     print_contacts(list_of_contacts)
     print()
     return list_of_contacts
 
 
-def search_to_modify(contact_list: list):
+def search_to_modify(contact_list: list): # поиск контактов для изменения с обработкой дублей
     search_field, search_value = search_parameters()
     search_result = []
     for contact in contact_list:
@@ -117,7 +117,7 @@ def search_to_modify(contact_list: list):
     print()
 
 
-def change_phone_number(file_name):
+def change_phone_number(file_name): # форма изменения контакта
     contact_list = read_file_to_list(file_name)
     number_to_change = search_to_modify(contact_list)
     contact_list.remove(number_to_change)
@@ -136,7 +136,7 @@ def change_phone_number(file_name):
             file.write(line)
 
 
-def delete_contact(file_name):
+def delete_contact(file_name): # удаление контакта 
     contact_list = read_file_to_list(file_name)
     number_to_change = search_to_modify(contact_list)
     contact_list.remove(number_to_change)
