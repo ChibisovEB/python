@@ -1,18 +1,17 @@
-import os
-import platform 
-print(os.name)
-print(os.getcwd())
-print(os.listdir(path=os.getcwd()))
+import pandas as pd
+import numpy as np
+import random
 
-print("=========================") 
-print(platform.system())
-print(platform.node())
-print(platform.platform())
-print(platform.processor())
-print(platform.python_version())
-print(platform.version())
-print(platform.uname())
+lst = ['robot'] * 10
+lst += ['human'] * 10
+random.shuffle(lst)
+data = pd.DataFrame({'whoAmI': lst})
+print(data)
 
-
-for current_dir, dirs, files in os.walk("."):
-    print(current_dir, dirs, files)
+==================================================
+data['tmp'] = 1
+data.set_index([data.index, 'whoAmI'], inplace=True)
+data = data.unstack(level=-1, fill_value = 0).astype(int)
+data.columns = data.columns.droplevel()
+data.columns.name = None
+data.head(20)
